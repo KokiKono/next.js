@@ -1,5 +1,8 @@
 name: Push On Flow
-on: push
+on:
+  push:
+    branches:
+      - feature/github_actions
 jobs:
   lint-check:
     name: コードのlintチェック
@@ -10,7 +13,7 @@ jobs:
         with:
           # 該当するプルリクの最新のcommitを取得
           ref: ${{ github.event.pull_request.head.sha }}
-      - name: run lint of 'front'
+      - name: run lint
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
