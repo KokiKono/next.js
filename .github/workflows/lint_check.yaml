@@ -1,9 +1,5 @@
-name: Create PullRequest or Commit Of Front Directory
-
-on:
-  push:
-    branches:
-      - feature/github_actions
+name: Push On Flow
+on: push
 jobs:
   lint-check:
     name: コードのlintチェック
