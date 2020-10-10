@@ -1,8 +1,7 @@
 name: Create PullRequest or Commit Of Front Directory
 
 on:
-  pull_request:
-    types: [opened, synchronize]
+  push:
     branches:
       - feature/github_actions
 jobs:
