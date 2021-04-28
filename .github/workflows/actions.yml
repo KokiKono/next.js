@@ -2,19 +2,19 @@ name: Manually triggered workflow
 on:
   workflow_dispatch:
     inputs:
-      name:
-        description: 'Person to greet'
+      releaseID:
+        description: 'リリースID。例）release/v21.05.01 の `21.05.01`の部分'
         required: true
-        default: 'Mona the Octocat'
-      home:
-        description: 'location'
-        required: false
-        default: 'The Octoverse'
 
 jobs:
-  say_hello:
+  CreateBranch:
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        echo "Hello ${{ github.event.inputs.name }}!"
-        echo "- in ${{ github.event.inputs.home }}!"
+      - name: checkout development
+        uses: actions/checkout@v2
+      - name: create new Branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git checkout -b release/v${{ github.event.inputs.releaseID }}!
+          git push origin release/v${{ github.event.inputs.releaseID }}!
