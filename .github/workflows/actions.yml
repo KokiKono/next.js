@@ -12,9 +12,9 @@ jobs:
     steps:
       - name: checkout development
         uses: actions/checkout@v2
-      - name: create new Branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git checkout -b release/v${{ github.event.inputs.releaseID }}
-          git push origin release/v${{ github.event.inputs.releaseID }}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          branch: release/v${{ github.event.inputs.releaseID }}
+          delete-branch: true
+          title: Release V${{ github.event.inputs.releaseID }}
