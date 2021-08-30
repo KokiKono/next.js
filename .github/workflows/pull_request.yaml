@@ -4,6 +4,8 @@ on:
     types: [opened, synchronize]
     branches:
       - master
+  workflow_dispatch:
+
 jobs:
   lint-check:
     name: コードのlintチェック
